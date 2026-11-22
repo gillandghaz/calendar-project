@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    pom.xml = file konfigurasi Maven.
+    Maven adalah alat build yang dipahami NetBeans, IntelliJ IDEA, dan VS Code,
+    sehingga proyek ini bisa dibuka langsung di ketiga IDE tanpa pengaturan tambahan.
+    Di sini diatur: versi Java, library yang dipakai, dan cara menjalankan/membungkus aplikasi.
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -6,12 +12,65 @@
 
     <groupId>org.example</groupId>
     <artifactId>Project_Calendar</artifactId>
-    <version>1.0-SNAPSHOT</version>  
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Calendar Project</name>
+    <description>Aplikasi kalender desktop (Java Swing) dengan penanda musim.</description>
 
     <properties>
-        <maven.compiler.source>26</maven.compiler.source>
-        <maven.compiler.target>26</maven.compiler.target>
+        <!--
+            Versi Java untuk kompilasi. 21 adalah versi LTS (dukungan jangka panjang),
+            sehingga bisa dibuka di JDK 21, 25, 26, atau yang lebih baru.
+        -->
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Kelas yang berisi method main(). Dipakai tombol Run di NetBeans dan oleh "mvn exec:java". -->
+        <exec.mainClass>org.example.Main</exec.mainClass>
+
+        <junit.version>5.11.4</junit.version>
     </properties>
 
+    <dependencies>
+        <!-- JUnit 5: library untuk unit test. Scope "test" = hanya dipakai saat testing. -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Menjalankan unit test saat "mvn test" / "mvn package". -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
+            </plugin>
+
+            <!-- Membuat file .jar yang bisa dijalankan langsung: java -jar target/Project_Calendar-1.0-SNAPSHOT.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${exec.mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Menjalankan aplikasi dari terminal: mvn compile exec:java -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
