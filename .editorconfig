@@ -1,0 +1,18 @@
+# EditorConfig: aturan format yang dibaca otomatis oleh NetBeans (plugin bawaan),
+# IntelliJ IDEA (bawaan), dan VS Code (ekstensi EditorConfig).
+# Tujuannya agar format kode sama, siapa pun yang mengedit dan apa pun IDE-nya.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{xml,form}]
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false

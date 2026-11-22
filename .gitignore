@@ -20,6 +20,8 @@ target/
 .sts4-cache
 
 ### NetBeans ###
+nbactions.xml
+nb-configuration.xml
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -30,7 +32,14 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+# Abaikan pengaturan pribadi, tapi bagikan rekomendasi ekstensi & konfigurasi Run
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
 
 ### Mac OS ###
 .DS_Store
+
+### Windows ###
+Thumbs.db
+desktop.ini

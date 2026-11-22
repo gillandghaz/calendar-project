@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run Calendar App",
+            "request": "launch",
+            "mainClass": "org.example.Main",
+            "projectName": "Project_Calendar"
+        }
+    ]
+}

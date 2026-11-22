@@ -1,0 +1,13 @@
+# Menyeragamkan akhir baris (line ending) di repository menjadi LF.
+# Saat di-checkout di Windows, Git otomatis mengubahnya sesuai sistem.
+# Ini mencegah diff "berubah semua baris" ketika anggota tim memakai IDE/OS berbeda.
+* text=auto eol=lf
+
+# File Windows tetap CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# File biner: jangan diubah sama sekali
+*.png binary
+*.jpg binary
+*.jar binary
